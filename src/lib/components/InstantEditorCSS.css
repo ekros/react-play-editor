@@ -1,0 +1,18 @@
+#instant-editor-css {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /*width: calc(100% - 300px);*/
+  background: whitesmoke;
+  border: 1px solid lightgray;
+  /*width: calc(50% - 2px);*/
+}
+#instant-editor-css-toolbar {
+  background: lightgray;
+}
+#instant-editor-css-textarea {
+  background: whitesmoke;
+  height: 300px;
+}
