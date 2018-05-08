@@ -571,7 +571,7 @@ Instant.propTypes = {
 Instant.defaultProps = {
 	autosave: false,
 	editable: true,
-	title: "React Instant Editor",
+	title: undefined,
 };
 
 export default Instant;
