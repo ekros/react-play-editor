@@ -35,7 +35,7 @@ export default class InstantEditor extends React.Component {
           this.refs.instantEditor,
           // document.getElementById("instant-editor"),
           {
-            value: children,
+            value: children || "",
             mode: "javascript",
             autofocus: this.state.focused,
             theme: defaultEditorTheme || "default",
