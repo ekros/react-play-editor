@@ -1,6 +1,7 @@
 {
   "name": "react-play-editor",
   "version": "0.1.2",
+  "baseurl": "/react-play-editor",
   "description": "Create React components and play with props and state using auto-generated forms.",
   "repository": "git@github.com:ekros/react-play-editor.git",
   "author": "Eric Ros <ericrosbh@gmail.com>",
