@@ -91,13 +91,13 @@ class Instant extends Component {
     this.updateCSS = this.updateCSS.bind(this);
   }
   componentDidMount() {
-    const { id, load } = this.props;
+    const { autosave, id, load } = this.props;
     // load external resources
     this.loadDeps();
 
     // call load to load saved text
     if (load) {
-      load(id);
+      load(id, autosave);
     }
 
     // init actions
@@ -341,11 +341,11 @@ class Instant extends Component {
     const { autosave, editable, id, onSave } = this.props;
     if (editable || ignoreEditable) {
       // call onSave if autosave is enabled // IDEA: in the future we can have a manual saving action
-      if (text && autosave) {
+      if (text) {
         this.setState({ pendingText: text, pendingChanges: true });
         if (!this.saveDelay) {
           this.saveDelay = setTimeout(() => {
-            onSave(id, this.state.pendingText, this.props.css, () => {
+            onSave(id, this.state.pendingText, this.props.css, autosave, () => {
               this.setState({ pendingChanges: false });
             });
             clearTimeout(this.saveDelay);
@@ -370,11 +370,11 @@ class Instant extends Component {
   updateCSS(css) {
     const { autosave, editable, id, onSave } = this.props;
     if (editable) {
-      if (css && autosave) {
+      if (css) {
         this.setState({ pendingCss: css, pendingChanges: true });
         if (!this.saveDelay) {
           this.saveDelay = setTimeout(() => {
-            onSave(id, this.props.text, this.state.pendingCss, () => {
+            onSave(id, this.props.text, this.state.pendingCss, autosave, () => {
               this.setState({ pendingChanges: false });
             });
             clearTimeout(this.saveDelay);

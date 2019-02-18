@@ -20,27 +20,30 @@ export default class App extends React.Component {
     examplesVisible: false
   };
 
-  load = id => {
-    this.setState({
-      css: localStorage.getItem(`${id}.css`),
-      text: localStorage.getItem(`${id}.text`),
-      lastUpdated: localStorage.getItem(`${id}.lastUpdated`)
-    });
+  load = (id, loadPersistedChanges) => {
+    if (loadPersistedChanges) {
+      this.setState({
+        css: localStorage.getItem(`${id}.css`) === "null",
+        text: localStorage.getItem(`${id}.text`),
+        lastUpdated: localStorage.getItem(`${id}.lastUpdated`)
+      });
+    }
   };
 
-  save = (id, js, css, cb) => {
+  save = (id, js, css, persistChanges, cb) => {
     const lastUpdated = new Date();
     this.setState({ text: js, css, lastUpdated: lastUpdated.toISOString() });
-    localStorage.setItem(`${id}.text`, js);
-    localStorage.setItem(`${id}.css`, css);
-    localStorage.setItem(`${id}.lastUpdated`, lastUpdated.toISOString());
+    if (persistChanges) {
+      localStorage.setItem(`${id}.text`, js);
+      localStorage.setItem(`${id}.css`, css);
+      localStorage.setItem(`${id}.lastUpdated`, lastUpdated.toISOString());
+    }
     cb();
   };
 
   toggleExamples = () => {
     this.setState({ examplesVisible: !this.state.examplesVisible });
   };
-
   render() {
     const { css, examplesVisible, text, lastUpdated } = this.state;
     return (
@@ -48,16 +51,16 @@ export default class App extends React.Component {
         <Panel>
           <Instant
             id="main"
+            autosave
             css={css}
             defaultEditorTheme="ambiance"
             editorOptions={{
               lineNumbers: true
             }}
-            autosave
             lastUpdated={new Date(lastUpdated)}
             load={this.load}
-            onSave={(id, js, css, cb) => {
-              this.save(id, js, css, cb);
+            onSave={(id, js, css, persistChanges, cb) => {
+              this.save(id, js, css, persistChanges, cb);
             }}
             text={text}
             title="React Play"
