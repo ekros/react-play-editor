@@ -75,7 +75,10 @@ export default class App extends React.Component {
             onClose={this.toggleExamples}
             title="Examples"
             style={{
-              width: 900
+              width: 900,
+              height: "calc(100vh - 200px)",
+              minHeight: 500,
+              overflowY: "auto"
             }}
           >
             <Examples />
