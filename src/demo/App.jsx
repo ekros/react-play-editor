@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Dialog } from "@blueprintjs/core";
+import { Button, Dialog, Intent } from "@blueprintjs/core";
 import {
   HorizontalLayout,
   VerticalLayout,
@@ -66,8 +66,15 @@ export default class App extends React.Component {
             title="React Play"
           />
         </Panel>
-        <Panel proportion="0 30px">
-          <Button onClick={this.toggleExamples}>
+        <Panel
+          customCss={{ background: "black", padding: "3px" }}
+          proportion="0 30px"
+        >
+          <Button
+            className="pt-minimal pt-small"
+            intent={Intent.PRIMARY}
+            onClick={this.toggleExamples}
+          >
             {examplesVisible ? "Hide examples" : "Show examples"}
           </Button>
           <Dialog
@@ -83,6 +90,24 @@ export default class App extends React.Component {
           >
             <Examples />
           </Dialog>
+          <div
+            style={{
+              display: "inline-block",
+              color: "lightgray",
+              float: "right"
+            }}
+          >
+            Powered by{" "}
+            <a
+              href="https://github.com/ekros/react-play-editor"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              react-play-editor
+            </a>
+            : Create React components and play with props and state using
+            auto-generated forms.
+          </div>
         </Panel>
       </VerticalLayout>
     );
