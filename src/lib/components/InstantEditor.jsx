@@ -39,6 +39,10 @@ export default class InstantEditor extends React.Component {
             mode: "javascript",
             autofocus: this.state.focused,
             theme: defaultEditorTheme || "default",
+            placeholder: `
+            Write here your JSX code. Example:
+            const Hello = ({}) => <div>hello</div>;
+            `,
             readOnly: !editable,
             ...editorOptions
           }

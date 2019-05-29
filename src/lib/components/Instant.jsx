@@ -537,7 +537,7 @@ class Instant extends Component {
           <Panel proportion={6}>
             <HorizontalLayout customCss={styles.horizontalLayout}>
               <Panel proportion={2}>
-                <TabGroup tabNames={["js", "css"]}>{editors}</TabGroup>
+                <TabGroup tabNames={["jsx", "css"]}>{editors}</TabGroup>
               </Panel>
               <Separator />
               <Panel proportion={1}>
